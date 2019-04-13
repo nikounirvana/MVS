@@ -2,7 +2,7 @@
 #include "../../libs/MVS/Common.h"
 #include "../../libs/MVS/Scene.h"
 #include <boost/program_options.hpp>
-#include "QuadTree.h"
+//#include "QuadTree.h"
 
 using namespace MVS;
 
@@ -42,9 +42,7 @@ int main(int argc, LPCTSTR* argv)
 	}
 
 	auto center = bounds.GetCenter();
-	std::cout << center(0) << std::endl;
-	std::cout << center(1) << std::endl;
-	std::cout << center(2) << std::endl;
+	std::cout << center << std::endl;
 
 	AABB3f tmp[2];
 	unsigned size = bounds.SplitBy(center(0), 0, tmp);

@@ -2,34 +2,28 @@
 #include "../../libs/MVS/Common.h"
 
 
-QuadTree::QuadTree(AABB3d ibox, int idepth):depth(idepth)
+QuadTree::QuadTree():depth(idepth)
+,_pScene(nullptr)
+,_root(nullptr)
 {
-	root = new Node();
-	root->box = ibox;
+	_root = new Node();
 }
 
 QuadTree::~QuadTree()
 {
-	if(root) delete root;
+	if(_root) delete _root;
 }
 
-void QuadTree::CreateQuadTree(Node* node, int level, int depth)
+void QuadTree::SetInputScene(Scene* pScene)
 {
-	if(node == nullptr) return;
-	if(level > depth) return;
-
-	Node** newnode = new Node[4];
-	for(int i=0; i<4; i++)
-	{
-		node->sons[i] = newnode[i];
-		CreateQuadTree(node->sons[i], level+1, depth);
-		if(level == depth)
-		{
-			Scene* pscene = new Scene();
-			node->pScene = pscene; 		
-		}
-	}
+	_pScene = pScene;
 }
+
+void QuadTree::PartitionScene(PTrait& trait)
+{
+	
+}
+
 
 void QuadTree::Insert(Point& ipoint)
 {
